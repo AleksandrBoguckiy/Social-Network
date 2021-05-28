@@ -1,10 +1,11 @@
 import React from "react";
-import HeaderMainContentPicture from "../assets/images/HeaderMainContentPicture.png";
-import Avatar from "../assets/images/Avatar.jpg";
+import HeaderMainContentPicture from "../../assets/images/HeaderMainContentPicture.png";
+import Avatar from "../../assets/images/Avatar.jpg";
+import s from './Profile.module.css'
 
 export function Profile() {
     return (
-        <div className='content'>
+        <div className={s.content}>
             <div>
                 <img src={HeaderMainContentPicture} alt='HeaderPicture'/>
             </div>
@@ -16,11 +17,11 @@ export function Profile() {
                 <div>
                     New post
                 </div>
-                <div>
-                    <div>
+                <div className={s.posts}>
+                    <div className={s.item}>
                         post 1
                     </div>
-                    <div>
+                    <div className={s.item}>
                         post 2
                     </div>
                 </div>

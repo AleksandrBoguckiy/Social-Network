@@ -1,0 +1,19 @@
+.nav {
+    background-color: #33393D;
+    grid-area: n;
+}
+
+.item {
+    color: white;
+    text-decoration: none;
+}
+
+.item a:hover {
+    color: #FFCD24;
+    transition: 0.2s linear;
+}
+
+.item.active {
+    color: #FFCD24;
+    padding: 5px;
+}
