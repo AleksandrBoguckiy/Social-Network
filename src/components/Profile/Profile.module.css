@@ -3,6 +3,10 @@
     grid-area: c;
 }
 
+.avatar {
+    padding: 10px;
+}
+
 .content img {
     height: 200px;
     grid-area: c;

@@ -1,0 +1,22 @@
+.item {
+    display: flex;
+    color: white;
+    margin-top: 10px;
+
+}
+
+.item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+.post {
+    padding: 13px 5px;
+}
+
+.likes {
+    position: relative;
+    padding: 10px;
+    top: 20px;
+}
