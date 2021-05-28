@@ -18,5 +18,16 @@
 .likes {
     position: relative;
     padding: 10px;
-    top: 20px;
+    top: 15px;
+    font-size: 15px;
+    color: #FFCD24;
+}
+
+.likes img {
+    position: relative;
+    top: 5px;
+    width: 18px;
+    height: 20px;
+    right: 3px;
+    border-radius: 0px;
 }
