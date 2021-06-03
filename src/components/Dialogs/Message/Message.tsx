@@ -2,11 +2,11 @@ import React from "react";
 import s from '../Dialogs.module.css'
 import Avatar from "../../../assets/images/Avatar.jpg";
 
-type PropsType = {
+export type PropsType = {
     message: string
 }
 
-export const Message = (props: PropsType) => {
+export const Message: React.FC<PropsType> = (props) => {
 
     return (
         <div className={s.messages}>

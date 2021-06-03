@@ -1,12 +1,14 @@
 import Avatar from '../../../../assets/images/Avatar.jpg';
 import s from './Post.module.css'
 import Heart from '../../../../assets/images/Heart.png'
+import React from 'react';
 
-type PostType = {
+type PostPropsType = {
+    id?: number
     post: string
     likesCount: number
 }
-export const Post: React.FC<PostType> = (props) => {
+export const Post: React.FC<PostPropsType> = (props) => {
     return (
         <div className={s.posts}>
             <div className={s.item}>

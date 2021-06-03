@@ -1,14 +1,15 @@
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css'
+import React from "react";
+import { PostType } from '../../..';
 
-export const MyPosts = () => {
+type MyPostsPropsType = {
+    posts: Array<PostType>
+}
 
-    let posts = [
-        {id: 1, post: "Hello my friends. I'm hear!", likesCount: 15},
-        {id: 2, post: "I'm fine!", likesCount: 9},
-    ]
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
-    let PostsElements = posts.map(p=> <Post post={p.post} likesCount={p.likesCount}/>)
+    let PostsElements = props.posts.map(p=> <Post post={p.post} likesCount={p.likesCount}/>)
 
     return (
         <div className={s.posts}>
