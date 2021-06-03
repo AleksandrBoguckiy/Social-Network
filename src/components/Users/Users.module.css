@@ -1,0 +1,84 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 120px 300px;
+    border-color: #FFCD24;
+    border-style: solid;
+    border-radius: 50px;
+    width: 700px;
+    margin-bottom: 10px;
+    background: #33393D;
+}
+.data {
+    display: grid;
+    grid-template-columns: 350px 100px;
+    grid-template-rows: 50px;
+    position: relative;
+    top: 25px;
+}
+
+.data_name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #FFCD24;
+}
+.users {
+    color: white;
+    padding: 10px;
+}
+
+.avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius:50px;
+    margin-bottom: -40px;
+}
+
+.btn {
+    position: relative;
+    left: 600px;
+    top: -32px;
+}
+
+.btn1 {
+    padding: 3px 6px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn2 {
+    background-color: #33393D;
+    color: #FFCD24;
+    border: 2px solid #FFCD24;
+}
+
+.btn2:hover {
+    background-color: #FFCD24;
+    color: black;
+}
+
+.btn2:active {
+    background-color: #33393D;
+    color: #FFCD24;
+    border: 2px solid #33393D;
+}
+
+.btn2:disabled {
+    background-color: #33393D;
+    color: #FFCD24;
+    border: 2px solid #33393D;
+}
+
+.selectedPage {
+    color: #FFCD24;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.pageItems {
+    padding-bottom: 18px;
+}

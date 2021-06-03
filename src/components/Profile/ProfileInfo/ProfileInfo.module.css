@@ -1,0 +1,31 @@
+.header {
+    width: 1000px;
+    height: 200px;
+}
+
+.avatar {
+    width: 300px;
+    padding: 10px;
+}
+
+.fullUser {
+    color: #FFCD24;
+    font-weight: bold;
+    position: absolute;
+    top: 300px;
+    font-size: 25px;
+    left: 680px;
+}
+
+.status {
+    color: #292929;
+    font-size: 16px;
+}
+
+.edit_status {
+    outline: none;
+    border: 2px solid #FFCD24;
+    resize: none;
+    font-weight: bold;
+    font-size: 15px;
+}

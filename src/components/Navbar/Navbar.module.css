@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.item {
+.item a {
     color: white;
     text-decoration: none;
 }
@@ -14,7 +14,11 @@
     transition: 0.2s linear;
 }
 
-.item.active {
+.item a.active {
     color: #FFCD24;
     padding: 5px;
+}
+
+.myFriends {
+    margin-top: 50px;
 }

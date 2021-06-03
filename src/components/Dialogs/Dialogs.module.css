@@ -1,0 +1,100 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2.2fr 10fr;
+    grid-template-rows: auto 2fr;
+    grid-template-areas:
+                        'a b'
+                        'c d';
+}
+
+.dialogs img {
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    margin-bottom: -15px;
+    margin-top: 15px;
+}
+
+.dialogItems {
+    padding: 20px;
+
+}
+
+.dialogItems .dialog .active {
+    color: #FFCD24;
+    padding: 5px;
+}
+
+.dialog a {
+    color: white;
+}
+
+.dialog a:hover {
+    color: #FFCD24;
+    transition: 0.2s linear;
+}
+
+.dialogItems .dialog a {
+    text-decoration: none;
+}
+
+.messages {
+    padding: 10px;
+    background-color: lightgrey;
+}
+
+.messages .message {
+    color: black;
+}
+
+.btn {
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn1 {
+    background-color: #33393D;
+    color: #FFCD24;
+    border: 2px solid #FFCD24;
+}
+
+.btn1:hover {
+    background-color: #FFCD24;
+    color: black;
+}
+
+.btn1:active {
+    background-color: #33393D;
+    color: #FFCD24;
+    border: 2px solid #33393D;
+}
+
+.inputForm {
+    position:relative;
+    width:200px;
+    grid-area: d;
+    margin-top: 20px;
+}
+
+.inputForm textarea {
+    outline: none;
+    border: 2px solid #FFCD24;
+    resize: none;
+    display: block;
+    width: 615px;
+    height: 50px;
+    margin-bottom: 20px;
+    padding-right: 150px;
+    overflow: hidden;
+}
+
+.inputForm button {
+    position:absolute;
+    top:4px;
+    right:-565px;
+}
