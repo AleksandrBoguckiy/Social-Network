@@ -4,21 +4,34 @@ import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
 
 export const Dialogs = () => {
+
+    let dialogs = [
+        {id: 1, name: 'Oleg'},
+        {id: 2, name: 'Egor'},
+        {id: 3, name: 'Mariya'},
+        {id: 4, name: 'Aleksandr'},
+        {id: 5, name: 'Ruslan'},
+        {id: 6, name: 'Irina'}
+    ]
+
+    let messages = [
+        {id: 1, message: 'Hi!'},
+        {id: 2, message: 'How are you?'},
+        {id: 3, message: 'Hey, are you there?'},
+        {id: 4, message: 'Hello Friend! Yes I am listening to you!'},
+    ]
+
+    let DialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+
+    let MessagesElements = messages.map(m => <Message message={m.message}/>)
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
-                <DialogItem name='Oleg' id={1}/>
-                <DialogItem name='Egor' id={2}/>
-                <DialogItem name='Mariya' id={3}/>
-                <DialogItem name='Aleksandr' id={4}/>
-                <DialogItem name='Ruslan' id={5}/>
-                <DialogItem name='Irina' id={6}/>
+                { DialogsElements }
             </div>
             <div className={s.messages}>
-                <Message message='Hi!'/>
-                <Message message='How are you?'/>
-                <Message message='Hey, are you there?'/>
-                <Message message='Hello Friend! Yes I am listening to you!'/>
+                { MessagesElements }
             </div>
             <div className={s.inputForm}>
                 <div>

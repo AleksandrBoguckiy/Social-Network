@@ -1,8 +1,15 @@
-import React from "react";
-import {Post} from "./Post/Post";
+import {Post} from './Post/Post';
 import s from './MyPosts.module.css'
 
 export const MyPosts = () => {
+
+    let posts = [
+        {id: 1, post: "Hello my friends. I'm hear!", likesCount: 15},
+        {id: 2, post: "I'm fine!", likesCount: 9},
+    ]
+
+    let PostsElements = posts.map(p=> <Post post={p.post} likesCount={p.likesCount}/>)
+
     return (
         <div className={s.posts}>
             <h3>My posts</h3>
@@ -14,8 +21,7 @@ export const MyPosts = () => {
                     <button className={`${s.btn} ${s.btn1}`}>Add post</button>
                 </div>
             </div>
-            <Post message={"Hello my friends. I'm hear!"} likes={15}/>
-            <Post message={"I'm fine!"} likes={9}/>
+            { PostsElements }
         </div>
     )
 }

@@ -1,11 +1,10 @@
-import React from "react";
-import Avatar from "../../../../assets/images/Avatar.jpg";
+import Avatar from '../../../../assets/images/Avatar.jpg';
 import s from './Post.module.css'
 import Heart from '../../../../assets/images/Heart.png'
 
 type PostType = {
-    message: string
-    likes: number
+    post: string
+    likesCount: number
 }
 export const Post: React.FC<PostType> = (props) => {
     return (
@@ -13,11 +12,11 @@ export const Post: React.FC<PostType> = (props) => {
             <div className={s.item}>
                 <img src={Avatar} alt='AvatarPicture'/>
                 <div className={s.post}>
-                    {props.message}
+                    {props.post}
                 </div>
                 <div className={s.likes}>
                     <img src={Heart} alt='Like'/>
-                    {props.likes}
+                    {props.likesCount}
                 </div>
             </div>
         </div>
