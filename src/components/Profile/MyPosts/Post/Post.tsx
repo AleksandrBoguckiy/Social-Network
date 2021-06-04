@@ -4,7 +4,6 @@ import Heart from '../../../../assets/images/Heart.png'
 import React from 'react';
 
 type PostPropsType = {
-    id?: number
     post: string
     likesCount: number
 }

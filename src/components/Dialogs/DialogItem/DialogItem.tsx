@@ -3,12 +3,11 @@ import s from '../Dialogs.module.css'
 import Avatar from '../../../assets/images/Avatar.jpg'
 import {NavLink} from "react-router-dom";
 
-type PropsType = {
+type DialogItemPropsType = {
     name: string
     id: number
 }
-
-export const DialogItem = (props: PropsType) => {
+export const DialogItem: React.FC<DialogItemPropsType> = (props) => {
 
     let path = '/dialogs/' + props.id;
 

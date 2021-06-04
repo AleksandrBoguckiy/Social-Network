@@ -1,12 +1,11 @@
 import {Post} from './Post/Post';
 import s from './MyPosts.module.css'
 import React from "react";
-import { PostType } from '../../..';
+import {PostsType} from "../../../index";
 
 type MyPostsPropsType = {
-    posts: Array<PostType>
+    posts: Array<PostsType>
 }
-
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     let PostsElements = props.posts.map(p=> <Post post={p.post} likesCount={p.likesCount}/>)
