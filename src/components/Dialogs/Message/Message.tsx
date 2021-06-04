@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import s from '../Dialogs.module.css'
-import Avatar from "../../../assets/images/Avatar.jpg";
+import Avatar from '../../../assets/images/Avatar.jpg';
 
 type MessagePropsType = {
     message: string

@@ -8,8 +8,8 @@ import {Users} from './components/Users/Users';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {StateType} from "./index";
-import React from "react";
+import {StateType} from './redux/state';
+import React from 'react';
 
 type AppPropsType = {
     state: StateType
@@ -21,7 +21,7 @@ const App: React.FC<AppPropsType> = (props) => {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar sidebar={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/profile/:userId?' render={() => <Profile profilePage={props.state.profilePage}/>}/>
                     <Route path='/users' render={() => <Users/>}/>
