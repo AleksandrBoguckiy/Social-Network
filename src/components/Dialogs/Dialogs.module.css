@@ -60,7 +60,7 @@
 .btn1 {
     background-color: #33393D;
     color: #FFCD24;
-    border: 2px solid #FFCD24;
+    border: #FFCD24;
 }
 
 .btn1:hover {

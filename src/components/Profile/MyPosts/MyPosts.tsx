@@ -10,15 +10,22 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
 
     let PostsElements = props.posts.map(p=> <Post post={p.post} likesCount={p.likesCount} key={p.id}/>)
 
+    let newPostElement = React.createRef<HTMLTextAreaElement>() //создание ссылки на пока не заданный элемент из JSX, т.е. textarea
+
+    const addPost = () => {
+        let text = newPostElement.current?.value; //берем значение у нативного HTML-элемента (обращаемся к ссылке)
+        alert(text)
+    }
+
     return (
         <div className={s.posts}>
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea placeholder='Anything new?' />
+                    <textarea ref={newPostElement} placeholder='Anything new?' />
                 </div>
                 <div>
-                    <button className={`${s.btn} ${s.btn1}`}>Add post</button>
+                    <button onClick={addPost} className={`${s.btn} ${s.btn1}`}>Add post</button>
                 </div>
             </div>
             { PostsElements }

@@ -1,16 +1,16 @@
-import HeaderMainContentPicture from "../../../assets/images/HeaderMainContentPicture.png";
-import s from "../Profile.module.css";
-import Avatar from "../../../assets/images/Avatar.jpg";
-import React from "react";
+import HeaderMainContentPicture from '../../../assets/images/HeaderMainContentPicture.png';
+import s from './ProfileInfo.module.css';
+import Avatar from '../../../assets/images/Avatar.jpg';
+import React from 'react';
 
 export const ProfileInfo = () => {
     return (
-        <div>
+        <div className={s.wrapper}>
             <div>
-                <img src={HeaderMainContentPicture} alt='HeaderPicture'/>
+                <img className={s.header} src={HeaderMainContentPicture} alt='HeaderPicture'/>
             </div>
-            <div className={s.avatar}>
-                <img src={Avatar} alt='AvatarPicture'/>
+            <div>
+                <img className={s.avatar} src={Avatar} alt='AvatarPicture'/>
             </div>
         </div>
     )
