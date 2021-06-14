@@ -6,6 +6,7 @@ import {DialogsPageType} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsPage: DialogsPageType
+    addMessage: (textMessage: string) => void
 }
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
@@ -16,8 +17,11 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const addMessage = () => {
-        let text = newMessageElement.current?.value;
-        alert(text)
+        debugger
+        if (newMessageElement.current) {
+            let text = newMessageElement.current?.value;
+            props.addMessage(text)
+        }
     }
     return (
         <div className={s.dialogs}>

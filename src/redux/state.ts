@@ -1,22 +1,24 @@
+import { v1 } from "uuid"
 
 export type PostsType = {
-    id: number
+    id: string
     post: string
     likesCount: number
+
 }
 
 export type DialogsType = {
-    id: number
+    id: string
     name: string
 }
 
 export type MessagesType = {
-    id: number
+    id: string
     message: string
 }
 
 export type MyFriendsType = {
-    id?: number
+    id: string
     name: string
 }
 
@@ -42,31 +44,49 @@ export type StateType = {
 export let state: StateType = {
     profilePage: {
         posts: [
-            {id: 1, post: "Hello my friends. I'm hear!", likesCount: 15},
-            {id: 2, post: "I'm fine!", likesCount: 9}
+            {id: v1(), post: "Hello my friends. I'm hear!", likesCount: 15},
+            {id: v1(), post: "I'm fine!", likesCount: 9}
         ]
     },
     dialogsPage: {
         dialogs: [
-            {id: 1, name: 'Oleg'},
-            {id: 2, name: 'Egor'},
-            {id: 3, name: 'Maria'},
-            {id: 4, name: 'Aleksandr'},
-            {id: 5, name: 'Ruslan'},
-            {id: 6, name: 'Irina'}
+            {id: v1(), name: 'Oleg'},
+            {id: v1(), name: 'Egor'},
+            {id: v1(), name: 'Maria'},
+            {id: v1(), name: 'Aleksandr'},
+            {id: v1(), name: 'Ruslan'},
+            {id: v1(), name: 'Irina'}
         ],
         messages: [
-            {id: 1, message: 'Hi!'},
-            {id: 2, message: 'How are you?'},
-            {id: 3, message: 'Hey, are you there?'},
-            {id: 4, message: 'Hello Friend! Yes I am listening to you!'}
+            {id: v1(), message: 'Hi!'},
+            {id: v1(), message: 'How are you?'},
+            {id: v1(), message: 'Hey, are you there?'},
+            {id: v1(), message: 'Hello Friend! Yes I am listening to you!'}
         ]
     },
     sidebar: {
         myFriends: [
-            {id: 1, name: 'Maria'},
-            {id: 2, name: 'Alex'},
-            {id: 3, name: 'Daria'}
+            {id: v1(), name: 'Maria'},
+            {id: v1(), name: 'Alex'},
+            {id: v1(), name: 'Daria'}
         ]
     }
+}
+
+export const addPost = (postMessage: string) => {
+    let newPost/*:PostsType (первый способ типизации)*/ = {
+        id: v1(),
+        post: postMessage,
+        likesCount: 2
+    } as PostsType /*второй способ типизации*/
+    state.profilePage.posts.push(newPost)
+}
+
+export const addMessage = (textMessage: string) => {
+    debugger
+    let newMessage = {
+        id: v1(),
+        message: textMessage
+    } as MessagesType
+    state.dialogsPage.messages.push(newMessage)
 }

@@ -13,6 +13,8 @@ import React from 'react';
 
 type AppPropsType = {
     state: StateType
+    addPost: (postMessage: string) => void
+    addMessage: (textMessage: string) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -23,9 +25,9 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Header/>
                 <Navbar sidebar={props.state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile/:userId?' render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                    <Route path='/profile/:userId?' render={() => <Profile profilePage={props.state.profilePage} addPost={props.addPost}/>}/>
                     <Route path='/users' render={() => <Users/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} />}/>
+                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} addMessage={props.addMessage}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
