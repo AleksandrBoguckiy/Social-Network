@@ -8,32 +8,32 @@ import {Users} from './components/Users/Users';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {StateType} from './redux/state';
+import {StoreType} from './redux/state';
 import React from 'react';
 
 type AppPropsType = {
-    state: StateType
-    addPostCallBack: (postMessage: string) => void
-    addMessageCallBack: (textMessage: string) => void
-    updateNewPostTextCallBack: (newText: string) => void
-    updateNewMessageTextCallBack: (newText: string) => void
+    store: StoreType
 }
 
 const App: React.FC<AppPropsType> = (props) => {
+
+    const state = props.store.getState()
 
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar sidebar={props.state.sidebar}/>
+                <Navbar sidebar={state.sidebar}/>
                 <div className='app-wrapper-content'>
-                    <Route path='/profile/:userId?' render={() => <Profile profilePage={props.state.profilePage}
-                                                                           addPostCallBack={props.addPostCallBack}
-                                                                           updateNewPostTextCallBack={props.updateNewPostTextCallBack}/>}/>
+                    <Route path='/profile/:userId?' render={() =>
+                        <Profile profilePage={state.profilePage}
+                                 addPostCallBack={props.store.addPost.bind(props.store)}
+                                 updateNewPostTextCallBack={props.store.updateNewPostText.bind(props.store)}/>}/>
                     <Route path='/users' render={() => <Users/>}/>
-                    <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage}
-                                                                  addMessageCallBack={props.addMessageCallBack}
-                                                                  updateNewMessageTextCallBack={props.updateNewMessageTextCallBack}/>}/>
+                    <Route path='/dialogs' render={() =>
+                        <Dialogs dialogsPage={state.dialogsPage}
+                                 addMessageCallBack={props.store.addMessage.bind(props.store)}
+                                 updateNewMessageTextCallBack={props.store.updateNewMessageText.bind(props.store)}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
