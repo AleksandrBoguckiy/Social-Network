@@ -1,11 +1,10 @@
 import {v1} from "uuid"
-import {rerenderEntireTree} from "../render";
+
 
 export type PostsType = {
     id: string
     post: string
     likesCount: number
-
 }
 
 export type DialogsType = {
@@ -42,6 +41,11 @@ export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SideBarType
+}
+
+
+let rerenderEntireTree = () => {
+    console.log('State changed')
 }
 
 export let state: StateType = {
@@ -86,12 +90,12 @@ export const addPost = (postMessage: string) => {
     } as PostsType /*второй способ типизации*/
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const addMessage = (textMessage: string) => {
@@ -101,10 +105,14 @@ export const addMessage = (textMessage: string) => {
     } as MessagesType
     state.dialogsPage.messages.push(newMessage)
     state.dialogsPage.newMessageText = ''
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export const updateNewMessageText = (newText: string) => {
     state.dialogsPage.newMessageText = newText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    rerenderEntireTree = observer
 }
