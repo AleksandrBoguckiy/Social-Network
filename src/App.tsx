@@ -8,11 +8,12 @@ import {Users} from './components/Users/Users';
 import {News} from './components/News/News';
 import {Music} from './components/Music/Music';
 import {Settings} from './components/Settings/Settings';
-import {StoreType} from './redux/state';
+import {ActionsType, StoreType} from './redux/state';
 import React from 'react';
 
 type AppPropsType = {
     store: StoreType
+    dispatch: (action: ActionsType) => void
 }
 
 const App: React.FC<AppPropsType> = (props) => {
@@ -26,14 +27,10 @@ const App: React.FC<AppPropsType> = (props) => {
                 <Navbar sidebar={state.sidebar}/>
                 <div className='app-wrapper-content'>
                     <Route path='/profile/:userId?' render={() =>
-                        <Profile profilePage={state.profilePage}
-                                 addPostCallBack={props.store.addPost.bind(props.store)}
-                                 updateNewPostTextCallBack={props.store.updateNewPostText.bind(props.store)}/>}/>
+                        <Profile profilePage={state.profilePage} dispatch={props.dispatch.bind(props.store)}/>}/>
                     <Route path='/users' render={() => <Users/>}/>
                     <Route path='/dialogs' render={() =>
-                        <Dialogs dialogsPage={state.dialogsPage}
-                                 addMessageCallBack={props.store.addMessage.bind(props.store)}
-                                 updateNewMessageTextCallBack={props.store.updateNewMessageText.bind(props.store)}/>}/>
+                        <Dialogs dialogsPage={state.dialogsPage} dispatch={props.dispatch.bind(props.store)}/>}/>
                     <Route path='/news' component={News}/>
                     <Route path='/music' component={Music}/>
                     <Route path='/settings' component={Settings}/>
