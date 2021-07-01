@@ -1,5 +1,9 @@
 import {v1} from "uuid"
 
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_NEW_MESSAGE_TEXT ='UPDATE-NEW-MESSAGE-TEXT'
 
 export type PostsType = {
     id: string
@@ -51,31 +55,11 @@ export type StoreType = {
     dispatch: (action: ActionsType) => void
 }
 
-type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
-
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    textMessage: string
-}
-
-type UpdateNewMessageTextActionType = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-
 export type ActionsType =
-    AddPostActionType
-    | UpdateNewPostTextActionType
-    | AddMessageActionType
-    | UpdateNewMessageTextActionType
+    ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof addMessageAC>
+    | ReturnType<typeof updateNewMessageTextAC>
 
 export let store: StoreType = {
     _state: {
@@ -121,7 +105,7 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(actions) {
-        if (actions.type === 'ADD-POST') {
+        if (actions.type === ADD_POST) {
             const newPost/*:PostsType (первый способ типизации)*/ = {
                 id: v1(),
                 post: actions.postMessage,
@@ -130,10 +114,10 @@ export let store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._rerenderEntireTree()
-        } else if (actions.type === 'UPDATE-NEW-POST-TEXT') {
+        } else if (actions.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = actions.newText
             this._rerenderEntireTree()
-        } else if (actions.type === 'ADD-MESSAGE') {
+        } else if (actions.type === ADD_MESSAGE) {
             const newMessage = {
                 id: v1(),
                 message: actions.textMessage
@@ -141,9 +125,14 @@ export let store: StoreType = {
             this._state.dialogsPage.messages.push(newMessage)
             this._state.dialogsPage.newMessageText = ''
             this._rerenderEntireTree()
-        } else if (actions.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+        } else if (actions.type === UPDATE_NEW_MESSAGE_TEXT) {
             this._state.dialogsPage.newMessageText = actions.newText
             this._rerenderEntireTree()
         }
     }
 }
+
+export const addPostAC = (newPostText:string) => ({type: ADD_POST, postMessage: newPostText} as const)
+export const updateNewPostTextAC = (newText:string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const)
+export const addMessageAC = (newMessageText:string) => ({type: ADD_MESSAGE, textMessage: newMessageText} as const)
+export const updateNewMessageTextAC = (newText:string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText} as const)
