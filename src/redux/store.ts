@@ -1,4 +1,6 @@
 import {v1} from "uuid"
+import { profileReducer } from "./profileReducer"
+import {dialogsReducer} from "./dialogsReducer";
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -105,30 +107,9 @@ export let store: StoreType = {
         return this._state
     },
     dispatch(actions) {
-        if (actions.type === ADD_POST) {
-            const newPost/*:PostsType (первый способ типизации)*/ = {
-                id: v1(),
-                post: actions.postMessage,
-                likesCount: 2
-            } as PostsType /*второй способ типизации*/
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._rerenderEntireTree()
-        } else if (actions.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = actions.newText
-            this._rerenderEntireTree()
-        } else if (actions.type === ADD_MESSAGE) {
-            const newMessage = {
-                id: v1(),
-                message: actions.textMessage
-            } as MessagesType
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._rerenderEntireTree()
-        } else if (actions.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = actions.newText
-            this._rerenderEntireTree()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, actions);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, actions);
+        this._rerenderEntireTree()
     }
 }
 
