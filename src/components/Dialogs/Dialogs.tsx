@@ -2,26 +2,29 @@ import React, {ChangeEvent} from 'react';
 import {DialogItem} from './DialogItem/DialogItem';
 import s from './Dialogs.module.css'
 import {Message} from './Message/Message';
-import {ActionsType, addMessageAC, DialogsPageType, updateNewMessageTextAC} from '../../redux/redux-store';
+import {DialogsType, MessagesType} from '../../redux/redux-store';
 
 type DialogsPropsType = {
-    dialogsPage: DialogsPageType
-    dispatch: (action: ActionsType) => void
+    addMessage: () => void
+    updateNewMessageText: (newText: string) => void
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+    newMessageText: string
 }
 export const Dialogs: React.FC<DialogsPropsType> = (props) => {
 
-    let DialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    let DialogsElements = props.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
 
-    let MessagesElements = props.dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>)
+    let MessagesElements = props.messages.map(m => <Message message={m.message} key={m.id}/>)
 
 
     const addMessage = () => {
-        props.dispatch(addMessageAC(props.dialogsPage.newMessageText))
+        props.addMessage()
     }
 
     const onMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const newText = e.currentTarget.value
-        props.dispatch(updateNewMessageTextAC(newText))
+        props.updateNewMessageText(newText)
     }
 
     return (
@@ -36,10 +39,10 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
                 <div>
                     <textarea onChange={onMessageHandler}
                               placeholder={'Write a message...'}
-                              value={props.dialogsPage.newMessageText}/>
+                              value={props.newMessageText}/>
                 </div>
                 <div>
-                    <button onClick={addMessage} className={s.btn + " " + s.btn1}>Send message</button>
+                    <button onClick={addMessage} className={`${s.btn} ${s.btn1}`}>Send message</button>
                 </div>
             </div>
         </div>
