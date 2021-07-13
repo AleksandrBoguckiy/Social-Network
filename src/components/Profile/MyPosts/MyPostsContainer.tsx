@@ -1,30 +1,24 @@
-import React from 'react';
-import {addPostAC, StoreType, updateNewPostTextAC} from '../../../redux/redux-store';
+import {connect} from 'react-redux';
 import {MyPosts} from "./MyPosts";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profileReducer";
+import {AppDispatchType, AppStateType} from "../../../redux/redux-store";
 
-
-type MyPostsPropsType = {
-    store: StoreType
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
+    }
 }
 
-
-export const MyPostsContainer: React.FC<MyPostsPropsType> = (props) => {
-
-    const state = props.store.getState()
-
-    const addPost = () => {
-        props.store.dispatch(addPostAC(state.profilePage.newPostText));
+const mapDispatchToProps = (dispatch: AppDispatchType) => {
+    return {
+        addPost: () => {
+            dispatch(addPostAC())
+        },
+        updateNewPostText: (newText: string) => {
+            dispatch(updateNewPostTextAC(newText))
+        }
     }
-
-    const onPostHandler = (newText: string) => {
-        props.store.dispatch(updateNewPostTextAC(newText))
-    }
-
-    return (
-        <MyPosts addPost={addPost}
-                 updateNewPostText={onPostHandler}
-                 posts={state.profilePage.posts}
-                 newPostText={state.profilePage.newPostText}/>
-    )
 }
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 

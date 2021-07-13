@@ -1,7 +1,13 @@
-import {ActionsType, MyFriendsType} from "./redux-store";
 import {v1} from "uuid";
+import {AppActionsTypes} from "./redux-store";
 
-type initialStateType = typeof initialState
+export type MyFriendsStateType = {
+    myFriends: Array<MyFriendsType>
+}
+export type MyFriendsType = {
+    id: string
+    name: string
+}
 
 const initialState = {
     myFriends: [
@@ -11,7 +17,7 @@ const initialState = {
     ] as Array<MyFriendsType>
 }
 
-export const sidebarReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
+export const sidebarReducer = (state: MyFriendsStateType = initialState, action: AppActionsTypes): MyFriendsStateType => {
 
     return state
 }
