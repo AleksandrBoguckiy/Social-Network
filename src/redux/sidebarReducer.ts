@@ -17,7 +17,7 @@ const initialState = {
     ] as Array<MyFriendsType>
 }
 
-export const sidebarReducer = (state: MyFriendsStateType = initialState, action: AppActionsTypes): MyFriendsStateType => {
+export const sidebarReducer = (state: MyFriendsStateType = initialState, action: AppActionsTypes) : MyFriendsStateType => {
 
     return state
 }
