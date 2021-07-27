@@ -1,5 +1,3 @@
-import userPhoto from "../assets/images/Avatar.jpg";
-
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET-USERS'
@@ -16,8 +14,11 @@ export type LocationType = {
 }
 export type UsersType = {
     id: string
-    avatar: typeof userPhoto
-    fullName: string
+    photos: {
+        small: string
+        large: string
+    }
+    name: string
     status: string
     followed: boolean
     location: LocationType
