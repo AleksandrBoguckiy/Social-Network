@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Users.module.css'
-import {UsersType} from "../../redux/usersReducer";
+import {UsersStateType, UsersType} from "../../redux/usersReducer";
 import userPhoto from "../../assets/images/Avatar.jpg";
 import axios from 'axios';
 
@@ -11,34 +11,36 @@ type UsersPropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-export const Users: React.FC<UsersPropsType> = (props) => {
-
-    if (props.users.length === 0) {
+export class UsersClass extends React.Component<UsersPropsType, UsersStateType> {
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items)
+            this.props.setUsers(response.data.items)
         })
     }
 
-    return (
-        <div className={s.users}>
-            <h2>Users</h2>
-            {
-                props.users.map(u => <div className={s.wrapper} key={u.id}>
+    render() {
+        return (
+            <div className={s.users}>
+                <h2>Users</h2>
+                {
+                    this.props.users.map(u => <div className={s.wrapper} key={u.id}>
                 <span>
                     <div className={s.avatar}>
-                        <img src={u.photos.small !== null ? u.photos.small: userPhoto} alt='Avatar'/>
+                        <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt='Avatar'/>
                     </div>
                     <div className={s.btn}>
                         {u.followed
                             ? <button className={`${s.btn1} ${s.btn2}`}
-                                      onClick={() => {props.unfollow(u.id)
+                                      onClick={() => {
+                                          this.props.unfollow(u.id)
                                       }}>Unfollow</button>
                             : <button className={`${s.btn1} ${s.btn2}`}
-                                      onClick={() => {props.follow(u.id)
+                                      onClick={() => {
+                                          this.props.follow(u.id)
                                       }}>Follow</button>}
                     </div>
                 </span>
-                    <span className={s.data}>
+                        <span className={s.data}>
                         <span>
                             <div className={s.data_name}>{u.name}</div>
                             <div>{u.status != null ? u.status : 'status not set'}</div>
@@ -48,8 +50,9 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                             <div>{'u.location.city'}</div>
                         </span>
                     </span>
-                </div>)
-            }
-        </div>
-    )
+                    </div>)
+                }
+            </div>
+        )
+    }
 }
