@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/AleksandrBoguckiy/Social-Network/static/css/main.b46bfa7c.chunk.css",
+    "main.js": "/AleksandrBoguckiy/Social-Network/static/js/main.dbb60320.chunk.js",
+    "main.js.map": "/AleksandrBoguckiy/Social-Network/static/js/main.dbb60320.chunk.js.map",
+    "runtime-main.js": "/AleksandrBoguckiy/Social-Network/static/js/runtime-main.b9585a31.js",
+    "runtime-main.js.map": "/AleksandrBoguckiy/Social-Network/static/js/runtime-main.b9585a31.js.map",
+    "static/js/2.507d919c.chunk.js": "/AleksandrBoguckiy/Social-Network/static/js/2.507d919c.chunk.js",
+    "static/js/2.507d919c.chunk.js.map": "/AleksandrBoguckiy/Social-Network/static/js/2.507d919c.chunk.js.map",
+    "static/js/3.69c57b5e.chunk.js": "/AleksandrBoguckiy/Social-Network/static/js/3.69c57b5e.chunk.js",
+    "static/js/3.69c57b5e.chunk.js.map": "/AleksandrBoguckiy/Social-Network/static/js/3.69c57b5e.chunk.js.map",
+    "index.html": "/AleksandrBoguckiy/Social-Network/index.html",
+    "static/css/main.b46bfa7c.chunk.css.map": "/AleksandrBoguckiy/Social-Network/static/css/main.b46bfa7c.chunk.css.map",
+    "static/js/2.507d919c.chunk.js.LICENSE.txt": "/AleksandrBoguckiy/Social-Network/static/js/2.507d919c.chunk.js.LICENSE.txt",
+    "static/media/Avatar.a7b1d287.jpg": "/AleksandrBoguckiy/Social-Network/static/media/Avatar.a7b1d287.jpg",
+    "static/media/HeaderMainContentPicture.5d41c4c1.png": "/AleksandrBoguckiy/Social-Network/static/media/HeaderMainContentPicture.5d41c4c1.png",
+    "static/media/HeaderPicture.3eb5f734.png": "/AleksandrBoguckiy/Social-Network/static/media/HeaderPicture.3eb5f734.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b9585a31.js",
+    "static/js/2.507d919c.chunk.js",
+    "static/css/main.b46bfa7c.chunk.css",
+    "static/js/main.dbb60320.chunk.js"
+  ]
+}
