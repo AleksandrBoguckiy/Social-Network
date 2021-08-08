@@ -24,7 +24,7 @@ export type PostsType = {
     likesCount: number
 }
 
-export const profileReducer = (state: ProfileStateType = initialState, actions: ProfileActionsType): ProfileStateType => {
+export const profileReducer = (state: ProfileStateType = initialState, actions: ProfileActionsType) : ProfileStateType => {
     switch (actions.type) {
 
         case ADD_POST: {

@@ -79,6 +79,10 @@
     font-size: 18px;
 }
 
+.pagination {
+    padding: 3px;
+}
+
 .pageItems {
     padding-bottom: 18px;
 }
