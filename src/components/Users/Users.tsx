@@ -2,39 +2,49 @@ import React from 'react';
 import s from './Users.module.css'
 import {UsersType} from "../../redux/usersReducer";
 import userPhoto from "../../assets/images/Avatar.jpg";
-import axios from 'axios';
 
 type UsersPropsType = {
     users: Array<UsersType>
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    setUsers: (users: Array<UsersType>) => void
+    onPageChanged: (currentPage: number) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            props.setUsers(response.data.items)
-        })
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = [];
+    for (let i = Math.max(props.currentPage - 5, 1); i <= Math.max(1,
+        Math.min(props.currentPage + 5, pagesCount)); i++) {
+        pages.push(i);
     }
-
     return (
         <div className={s.users}>
             <h2>Users</h2>
+            <div>
+                {pages.map(p => <span key={p}
+                                      className={`${props.currentPage === p ? s.selectedPage : ''} ${s.pagination}`}
+                                      onClick={() => props.onPageChanged(p)}>{p}</span>)}
+            </div>
+
             {
                 props.users.map(u => <div className={s.wrapper} key={u.id}>
                 <span>
                     <div className={s.avatar}>
-                        <img src={u.photos.small !== null ? u.photos.small: userPhoto} alt='Avatar'/>
+                        <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt='Avatar'/>
                     </div>
                     <div className={s.btn}>
                         {u.followed
                             ? <button className={`${s.btn1} ${s.btn2}`}
-                                      onClick={() => {props.unfollow(u.id)
+                                      onClick={() => {
+                                          props.unfollow(u.id)
                                       }}>Unfollow</button>
                             : <button className={`${s.btn1} ${s.btn2}`}
-                                      onClick={() => {props.follow(u.id)
+                                      onClick={() => {
+                                          props.follow(u.id)
                                       }}>Follow</button>}
                     </div>
                 </span>
