@@ -4,7 +4,7 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC,
+    setUsersAC, toggleIsFetchingAC,
     unfollowAC,
     UsersStateType,
     UsersType
@@ -12,20 +12,23 @@ import {
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../common/Preloader/Preloader";
 
-type MapStateToPropsType =  {
+type MapStateToPropsType = {
     users: Array<UsersType>
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
-type MapDispatchToPropsType =  {
+type MapDispatchToPropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 type UsersPropsType = {
@@ -35,14 +38,18 @@ type UsersPropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 export class UsersContainer extends React.Component<UsersPropsType, UsersStateType> {
     componentDidMount() {
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalUsersCount(response.data.totalCount)
         })
@@ -50,19 +57,25 @@ export class UsersContainer extends React.Component<UsersPropsType, UsersStateTy
 
     onPageChanged = (currentPage: number) => {
         this.props.setCurrentPage(currentPage)
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         })
     }
 
     render() {
-        return <Users users={this.props.users}
-                      follow={this.props.follow}
-                      unfollow={this.props.unfollow}
-                      totalUsersCount={this.props.totalUsersCount}
-                      pageSize={this.props.pageSize}
-                      currentPage={this.props.currentPage}
-                      onPageChanged={this.onPageChanged} />
+
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users users={this.props.users}
+                   follow={this.props.follow}
+                   unfollow={this.props.unfollow}
+                   totalUsersCount={this.props.totalUsersCount}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   onPageChanged={this.onPageChanged}/>
+        </>
     }
 }
 
@@ -71,7 +84,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         users: state.usersPage.users,
         totalUsersCount: state.usersPage.totalUsersCount,
         pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 
@@ -91,8 +105,11 @@ const mapDispatchToProps = (dispatch: AppDispatchType): MapDispatchToPropsType =
         },
         setTotalUsersCount: (totalUsersCount: number) => {
             dispatch(setTotalUsersCountAC(totalUsersCount))
+        },
+        toggleIsFetching: (isFetching: boolean) => {
+            dispatch(toggleIsFetchingAC(isFetching))
         }
     }
 }
 
-export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType> (mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(UsersContainer)
