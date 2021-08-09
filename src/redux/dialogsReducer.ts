@@ -3,7 +3,7 @@ import {v1} from "uuid";
 const ADD_MESSAGE = 'ADD-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
 
-export type DialogsActionsType = ReturnType<typeof addMessageAC> | ReturnType<typeof updateNewMessageTextAC>
+export type DialogsActionsType = ReturnType<typeof addMessage> | ReturnType<typeof updateNewMessageText>
 
 export type DialogsStateType = {
     dialogs: Array<DialogsType>
@@ -61,5 +61,5 @@ export const dialogsReducer = (state: DialogsStateType = initialState, actions: 
     }
 }
 
-export const addMessageAC = () => ({type: ADD_MESSAGE} as const)
-export const updateNewMessageTextAC = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText} as const)
+export const addMessage = () => ({type: ADD_MESSAGE} as const)
+export const updateNewMessageText = (newText: string) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText} as const)

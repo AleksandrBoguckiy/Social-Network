@@ -3,7 +3,7 @@ import {v1} from "uuid";
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 
-export type ProfileActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type ProfileActionsType = ReturnType<typeof addPost> | ReturnType<typeof updateNewPostText>
 
 const initialState: ProfileStateType = {
     posts: [
@@ -51,5 +51,5 @@ export const profileReducer = (state: ProfileStateType = initialState, actions: 
     }
 }
 
-export const addPostAC = () => ({type: ADD_POST} as const)
-export const updateNewPostTextAC = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const)
+export const addPost = () => ({type: ADD_POST} as const)
+export const updateNewPostText = (newText: string) => ({type: UPDATE_NEW_POST_TEXT, newText} as const)
