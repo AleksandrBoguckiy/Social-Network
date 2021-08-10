@@ -16,11 +16,17 @@
     top: 25px;
 }
 
+.data a {
+    text-decoration: none;
+}
+
 .data_name {
     font-weight: bold;
     font-size: 18px;
     color: #FFCD24;
+    text-decoration: none;
 }
+
 .users {
     color: white;
     padding: 10px;

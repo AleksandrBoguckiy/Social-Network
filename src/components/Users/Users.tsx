@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.css'
 import {UsersType} from "../../redux/usersReducer";
 import userPhoto from "../../assets/images/Avatar.jpg";
+import {NavLink} from 'react-router-dom';
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -33,8 +34,11 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             {
                 props.users.map(u => <div className={s.wrapper} key={u.id}>
                 <span>
+
                     <div className={s.avatar}>
-                        <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt='Avatar'/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small !== null ? u.photos.small : userPhoto} alt='Avatar'/>
+                        </NavLink>
                     </div>
                     <div className={s.btn}>
                         {u.followed
@@ -50,7 +54,9 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                 </span>
                     <span className={s.data}>
                         <span>
-                            <div className={s.data_name}>{u.name}</div>
+                            <NavLink to={'/profile/' + u.id}>
+                                <div className={s.data_name}>{u.name}</div>
+                            </NavLink>
                             <div>{u.status != null ? u.status : 'status not set'}</div>
                         </span>
                         <span>
