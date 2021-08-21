@@ -4,6 +4,7 @@ import {UsersType} from "../../redux/usersReducer";
 import userPhoto from "../../assets/images/Avatar.jpg";
 import {NavLink} from 'react-router-dom';
 import Pagination from 'rc-pagination';
+import {localInfo} from "../../locale/en_US";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -24,6 +25,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                         defaultCurrent={props.currentPage}
                         pageSize={props.pageSize}
                         total={props.totalUsersCount}
+                        current={props.currentPage}
+                        locale={localInfo}
                         onChange={(e) => {props.onPageChanged(e)}}/>
             {
                 props.users.map(u => <div className={s.wrapper} key={u.id}>
