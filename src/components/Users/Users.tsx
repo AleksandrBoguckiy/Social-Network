@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import {UsersType} from "../../redux/usersReducer";
 import userPhoto from "../../assets/images/Avatar.jpg";
 import {NavLink} from 'react-router-dom';
+import Pagination from 'rc-pagination';
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -16,21 +17,14 @@ type UsersPropsType = {
 
 export const Users: React.FC<UsersPropsType> = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = [];
-    for (let i = Math.max(props.currentPage - 5, 1); i <= Math.max(1,
-        Math.min(props.currentPage + 5, pagesCount)); i++) {
-        pages.push(i);
-    }
     return (
         <div className={s.users}>
             <h2>Users</h2>
-            <div>
-                {pages.map(p => <span key={p}
-                                      className={`${props.currentPage === p ? s.selectedPage : ''} ${s.pagination}`}
-                                      onClick={() => props.onPageChanged(p)}>{p}</span>)}
-            </div>
-
+            <Pagination className="ant-pagination"
+                        defaultCurrent={props.currentPage}
+                        pageSize={props.pageSize}
+                        total={props.totalUsersCount}
+                        onChange={(e) => {props.onPageChanged(e)}}/>
             {
                 props.users.map(u => <div className={s.wrapper} key={u.id}>
                 <span>
