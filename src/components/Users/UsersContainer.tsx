@@ -31,7 +31,7 @@ type MapDispatchToPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
+export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 
 
 class UsersContainer extends React.Component<UsersPropsType & MapDispatchToPropsType, {}> {

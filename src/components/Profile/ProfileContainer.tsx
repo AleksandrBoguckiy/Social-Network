@@ -7,7 +7,7 @@ import {AppStateType} from "../../redux/redux-store";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 type PathParamsType = {
-    userId: any
+    userId: string
 }
 
 type MapStateToPropsType = {
@@ -28,7 +28,7 @@ class ProfileContainer extends React.Component <PropsType & MapDispatchToPropsTy
         debugger
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = 2;
+            userId = '2';
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
             this.props.setUserProfile(response.data)
