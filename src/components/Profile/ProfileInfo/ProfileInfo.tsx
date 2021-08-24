@@ -19,6 +19,9 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
             <div>
                 <img className={s.header} src={HeaderMainContentPicture} alt='HeaderPicture'/>
             </div>
+            <div className={s.fullUser}>
+                {props.profile.fullName}
+            </div>
             <div>
                 <img className={s.avatar} src={props.profile.photos.large != null ? props.profile.photos.large : Avatar} alt='AvatarPicture'/>
             </div>

@@ -5,6 +5,7 @@ import userPhoto from "../../assets/images/Avatar.jpg";
 import {NavLink} from 'react-router-dom';
 import Pagination from 'rc-pagination';
 import {localInfo} from "../../locale/en_US";
+import {followApi} from "../../api/api";
 
 type UsersPropsType = {
     users: Array<UsersType>
@@ -27,7 +28,9 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                         total={props.totalUsersCount}
                         current={props.currentPage}
                         locale={localInfo}
-                        onChange={(e) => {props.onPageChanged(e)}}/>
+                        onChange={(e) => {
+                            props.onPageChanged(e)
+                        }}/>
             {
                 props.users.map(u => <div className={s.wrapper} key={u.id}>
                 <span>
@@ -41,11 +44,19 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                         {u.followed
                             ? <button className={`${s.btn1} ${s.btn2}`}
                                       onClick={() => {
-                                          props.unfollow(u.id)
+                                          followApi.unFollow(u.id).then(res => {
+                                              if (res.data.resultCode === 0) {
+                                                  props.unfollow(u.id)
+                                              }
+                                          })
                                       }}>Unfollow</button>
                             : <button className={`${s.btn1} ${s.btn2}`}
                                       onClick={() => {
-                                          props.follow(u.id)
+                                          followApi.follow(u.id).then(res => {
+                                              if (res.data.resultCode === 0) {
+                                                  props.follow(u.id)
+                                              }
+                                          })
                                       }}>Follow</button>}
                     </div>
                 </span>
