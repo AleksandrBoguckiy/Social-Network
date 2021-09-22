@@ -12,7 +12,8 @@ export const MyFriends: React.FC<MyFriendsPropsType> = (props) => {
     return (
         <div className={style.friends}>
             <div>
-                <img src={Avatar} alt={'Avatar'}/> {props.name}
+                <img src={Avatar} alt={'Avatar'}/>
+                <span>{props.name}</span>
             </div>
         </div>
     );

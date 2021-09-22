@@ -5,7 +5,8 @@
           "h h h"
           "a n c"
           "a n c";
-    grid-template-columns: 2fr 9fr 10fr
+    grid-template-columns: 2fr 9fr 10fr;
+    width: 991px
 }
 
 .header {
