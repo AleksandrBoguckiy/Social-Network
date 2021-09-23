@@ -4,6 +4,7 @@ import React from 'react';
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileType} from "../../../redux/profileReducer";
 import Avatar from '../../../assets/images/Avatar.jpg';
+import { ProfileStatus } from './ProfileStatus';
 
 type ProfileInfoPropsType = {
     profile: ProfileType | null
@@ -25,9 +26,7 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
             </div>
             <div className={s.fullNameUser}>
                 {props.profile.fullName}
-                <div className={s.status}>
-                    {props.profile.aboutMe}
-                </div>
+                <ProfileStatus status={props.profile.aboutMe}/>
             </div>
             <div className={s.lookingForAJob}>
                 <div>
