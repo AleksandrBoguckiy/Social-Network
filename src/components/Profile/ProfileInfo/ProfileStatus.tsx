@@ -1,32 +1,47 @@
 import s from "./ProfileInfo.module.css";
-import React, {useState} from "react";
+import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type ProfileStatusPropsType = {
-    status: string | number | readonly string[] | undefined
+    status: string
+    updateStatus: (status: string) => void
 }
-export const ProfileStatus: React.FC<ProfileStatusPropsType> = (props) => {
+export const ProfileStatus: React.FC<ProfileStatusPropsType> = React.memo((props) => {
 
-    let [editMode, setEditMode] = useState<boolean>(false)
+        let [editMode, setEditMode] = useState<boolean>(false)
+        let [status, setStatus] = useState<string>(props.status)
 
-    const activateEditMode = () => {
-        setEditMode(true)
-    }
+        const activateEditMode = () => {
+            setEditMode(true)
+        }
 
-    const deactivateEditMode = () => {
-        setEditMode(false)
-    }
+        const deactivateEditMode = () => {
+            status ? props.updateStatus(status) : setStatus(status)
+            setEditMode(false)
+        }
 
-    return (
-        <div className={s.status}>
-            {
-                editMode
-                    ? <div>
-                    <input className={s.edit_status} onBlur={deactivateEditMode} type='text' value={props.status} autoFocus/>
-                    </div>
-                    : <div>
-                    <span onDoubleClick={activateEditMode}>{props.status}</span>
-                    </div>
+        const onChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
+            setStatus(e.currentTarget.value)
+        }
+
+        const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+            if (e.key === 'Enter') {
+                deactivateEditMode();
             }
-        </div>
-    )
-}
+        }
+
+        return (
+            <div className={s.status}>
+                {
+                    editMode
+                        ? <div>
+                            <input className={s.edit_status} onBlur={deactivateEditMode} onKeyPress={onKeyPressHandler}
+                                   onChange={onChangeStatus} type='text' value={status} autoFocus/>
+                        </div>
+                        : <div>
+                            <span onDoubleClick={activateEditMode}>{props.status || '-----'}</span>
+                        </div>
+                }
+            </div>
+        )
+    }
+)
